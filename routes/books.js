@@ -6,6 +6,10 @@ function Books() {
   return knex('books');
 }
 
+function Readers() {
+  return knex('readers');
+}
+
 router.get('/books', function(req, res, next) {
   Books().select().then(function(results){
     res.render('books/index', {books: results});
