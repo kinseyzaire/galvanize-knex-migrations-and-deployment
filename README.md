@@ -40,7 +40,6 @@ Deploy this CRUD app to Heroku and use your migrations to add your `Readers` and
 ```sh
 $ npm install --save pg knex  #install knex locally
 $ npm install knex -g         #install knex cli globally if you haven't before
-$ knex init                   #create knexfile.js
 ```
 
 ---
