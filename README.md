@@ -5,6 +5,14 @@
 * Be able to explain why migrations are important
 * Be able to explain why migrations have unique identifying numbers
 
+## Why you should care
+
+Migrations are a convenient way to alter your database schema over time in a consistent and easy way. Migrations reduce the opportunity for human error and allow you to automate schema creation in both development and production.
+
+You can think of each migration as being a new 'version' of the database. A schema starts off with nothing in it, and each migration modifies it to add or remove tables, columns, or entries.
+
+These migrations also provide further documentation about your database schema for future you, your team, and _future you!_
+
 ## EXERCISE SUMMARY
 
 __STEP 1:__
@@ -12,6 +20,7 @@ Included in this repo is a Library CRUD app. Your mission is to add `Books` and 
 
 __Books__
 
+* id
 * author
 * title
 * rating
@@ -19,6 +28,7 @@ __Books__
 
 __Readers__
 
+* id
 * first_name
 * last_name
 
@@ -59,17 +69,13 @@ module.exports = {
 
 ## Migrations
 
-* Migrations allow for you to define sets of schema changes that modify a database schema
+Migrations are stored as files in the migrations directory, one for each migration. The name of the file is of the form CURRENTDATETIME_create_books.js, that is to say a UTC timestamp identifying the migration followed by an underscore followed by the name of the migration.  Knex uses this timestamp to determine which migration should be run and in what order.
 
-* The migration cli is bundled with the knex global install.
+Of course, calculating timestamps is no fun, so Knex provides a generator to handle making it for you:
+
+__The migration cli is bundled with the knex global install.__
 
 ---
-
-## Create the database
-
-```sh
-$ createdb library
-```
 
 ## Knex migration tool
 
@@ -78,12 +84,14 @@ Create a new migration with the name create_books
 ```sh
 knex migrate:make create_books
 ```
+__You probably got an error about not having a database? Your migration file was still created, but go ahead and use knex to create your `library` database__
 
----
+```sh
+$ createdb library
+```
 
-## Migrations
 
-* Migrations are how we define and update our database schema. Update the new migration file `migrations/CURRENTDATETIME_create_books.js` accordingly:
+Update the new migration file `migrations/CURRENTDATETIME_create_books.js` accordingly:
 
 ```js
 exports.up = function(knex, Promise) {
