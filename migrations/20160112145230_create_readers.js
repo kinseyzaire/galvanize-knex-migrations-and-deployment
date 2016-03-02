@@ -6,6 +6,10 @@ exports.up = function(knex, Promise) {
   })
 };
 
+// I SHOULD HAVE CHANGED THIS TO READERS
+// but know I'm not supposed to change over
+// an already saved migration
+// what next?
 exports.down = function(knex, Promise) {
   return knex.schema.dropTable('books');
 };
